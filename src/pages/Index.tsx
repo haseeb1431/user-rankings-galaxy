@@ -2,6 +2,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import LeaderboardEntry from "@/components/LeaderboardEntry";
 import { Badge } from "@/components/ui/badge";
 import { Trophy } from "lucide-react";
+import { useEffect, useState } from "react";
+import { readCSV } from "@/lib/csvReader";
 
 // Mock data for the current user (we'll only show this one)
 const CURRENT_USER = {
@@ -23,6 +25,17 @@ const MOCK_AWARDS = [
 ];
 
 const Index = () => {
+  const [leaderboardData, setLeaderboardData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await readCSV("/src/data/eco_usage_data.csv");
+      setLeaderboardData(data);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 p-8">
       <div className="max-w-3xl mx-auto space-y-8 animate-fade-in">
@@ -51,6 +64,16 @@ const Index = () => {
               score={CURRENT_USER.score}
               avatar={CURRENT_USER.avatar}
             />
+
+            {/* {leaderboardData.map((entry, index) => (
+              <LeaderboardEntry
+                key={index}
+                rank={entry.rank}
+                name={entry.user_id}
+                score={entry.sum_eco_score}
+                avatar={CURRENT_USER.avatar} // Placeholder avatar
+              />
+            ))} */}
           </TabsContent>
 
           <TabsContent value="badges" className="grid grid-cols-1 md:grid-cols-2 gap-4">

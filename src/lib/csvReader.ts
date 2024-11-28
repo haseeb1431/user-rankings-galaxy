@@ -15,9 +15,12 @@ interface LeaderboardData {
   percentage_rank: number;
 }
 
-export const readCSV = async (file: File): Promise<LeaderboardData[]> => {
+export const readCSV = async (filePath: string): Promise<LeaderboardData[]> => {
+  const response = await fetch(filePath);
+  const csvText = await response.text();
+
   return new Promise((resolve, reject) => {
-    Papa.parse(file, {
+    Papa.parse(csvText, {
       header: true,
       dynamicTyping: true,
       complete: (results) => {
