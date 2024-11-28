@@ -54,7 +54,7 @@ const LeaderboardEntry = ({ rank, name, score, avatar }: LeaderboardEntryProps) 
         </div>
         <span className="font-medium text-white">{name}</span>
       </div>
-      <span className="text-lg font-semibold text-white/80">{score.toLocaleString()}</span>
+      <span className="text-lg font-semibold text-white/80">{score}</span>
     </div>
   );
 };
