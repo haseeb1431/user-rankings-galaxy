@@ -12,9 +12,9 @@ const CURRENT_USER = {
 };
 
 const MOCK_BADGES = [
-  { id: 1, name: "Water Saver", description: "Saved 1000L of water", icon: "💧" },
-  { id: 2, name: "Carbon Reducer", description: "Reduced 1000kg of CO2", icon: "🌱" },
-  { id: 3, name: "Eco Champion", description: "Eco User of the Month", icon: "🌍" },
+  { id: 1, name: "Water Saver", description: "Saved 1000L of water", icon: "💧", img:"water-saver.jpeg" },
+  { id: 2, name: "Carbon Reducer", description: "Reduced 1000kg of CO2", icon: "🌱" ,img:"carbon-reducer.jpeg"},
+  { id: 3, name: "Eco Champion", description: "Eco User of the Month", icon: "🌍" ,img:"eco-champion.jpeg"},
 ];
 
 const MOCK_AWARDS = [
@@ -60,11 +60,12 @@ const Index = () => {
                 className="p-4 rounded-lg backdrop-blur-sm bg-white/10 border border-white/20 transition-all duration-300 hover:scale-[1.02] animate-fade-in"
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-3xl">{badge.icon}</span>
-                  <div>
+                  <img src={`/images/${badge.img}`} className=" rounded-full" />
+                  {/* <span className="text-3xl">{badge.icon}</span> */}
+                  {/* <div>
                     <h3 className="font-semibold text-white">{badge.name}</h3>
                     <p className="text-sm text-white/60">{badge.description}</p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             ))}
